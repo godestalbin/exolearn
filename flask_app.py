@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -23,6 +24,7 @@ db = SQLAlchemy(app)
 app.secret_key = "something only you know"
 login_manager = LoginManager()
 login_manager.init_app(app)
+migrate = Migrate(app, db)
 
 class User(UserMixin):
 
